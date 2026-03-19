@@ -129,6 +129,6 @@ def draw_multi_graph(histories: list[tuple[float, list[dict]]]) -> None:
     ax.grid(axis="y", linewidth=0.3, linestyle="--", alpha=0.5)
 
     plt.tight_layout()
-    plt.savefig("ev_graph.png", dpi=150, bbox_inches="tight")
-    print("Saved → ev_graph.png")
+    plt.savefig("ev_graph_multi.png", dpi=150, bbox_inches="tight")
+    print("Saved → ev_graph_multi.png")
     plt.show()
