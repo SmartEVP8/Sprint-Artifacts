@@ -1,0 +1,61 @@
+==========================================================================================
+SMARTEV COST FUNCTION EXPLORER
+==========================================================================================
+
+EV spawn:       (375.5, 325.2)
+EV destination: (134.6, 350.4)
+SoC:            0.265  (19.8 / 75 kWh)
+Direct distance:242.2 km  →  needs 27.2 kWh  (can't reach: ✓)
+
+Reachable stations (3):
+  S5  price=953  queue=6
+  S7  price=758  queue=1
+  S8  price=1111  queue=4
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #01  U1: SoC*100 | P2: -(avgPrice-currentPrice) | D1: extraMinutes | Q3: queue³
+  → Best station: S7  (price=758, queue=1)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S7          26.45    -108.44       0.83     1.00       -80.15 ◄
+  S5          26.45      87.16      20.76   216.00       350.38
+  S8          26.45     244.96     145.26    64.00       480.68
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #02  U1: SoC*100 | P2: -(avgPrice-currentPrice) | D2: (1 - (orig / total)) * 100 | Q3: queue³
+  → Best station: S7  (price=758, queue=1)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S7          26.45    -108.44       0.46     1.00       -80.53 ◄
+  S5          26.45      87.16      10.26   216.00       339.87
+  S8          26.45     244.96      44.43    64.00       379.85
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #03  U5: SoC⁻⁰·⁵+SoC | P2: -(avgPrice-currentPrice) | D1: extraMinutes | Q3: queue³
+  → Best station: S7  (price=758, queue=1)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S7           2.21    -108.44       0.83     1.00      -104.40 ◄
+  S5           2.21      87.16      20.76   216.00       326.13
+  S8           2.21     244.96     145.26    64.00       456.43
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #04  U5: SoC⁻⁰·⁵+SoC | P2: -(avgPrice-currentPrice) | D2: (1 - (orig / total)) * 100 | Q3: queue³
+  → Best station: S7  (price=758, queue=1)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S7           2.21    -108.44       0.46     1.00      -104.77 ◄
+  S5           2.21      87.16      10.26   216.00       315.63
+  S8           2.21     244.96      44.43    64.00       355.61
+
+==========================================================================================
+SUMMARY: Station selection frequency across all combinations
+
+    S7  ████  (4/4)
+
+  Seed: 589075
+

@@ -2,6 +2,7 @@ from Simulation import SpawnCars
 from Simulation.CarsOnRoad import CarsOnRoad, DayOfWeek
 from Simulation.SpawnCars import spawn_cars
 from Simulation.Car import Car
+from Simulation.SpawnSchedule import _build_spawn_schedule
 import random
 
 TICK_MINUTES = 30
@@ -23,14 +24,17 @@ class EventLoop:
         use_run_mean:   If True, each run draws a random mean journey time
                         that influences 50% of spawned cars. If False, all
                         cars use a uniform random duration between 10-360 min.
+        spread_spawns:  If True, cars are distributed evenly across each
+                        minute of the tick instead of all spawning at once.
     """
-    def __init__(self, spawn_fraction: float, thread_id: int = 0, use_run_mean: bool = True):
+    def __init__(self, spawn_fraction: float, thread_id: int = 0, use_run_mean: bool = True, spread_spawns: bool = False):
         if not (0.0 < spawn_fraction <= 1.0):
             raise ValueError("spawn_fraction must be between 0 and 1")
 
         self.spawn_fraction = spawn_fraction
         self.thread_id = thread_id
         self.use_run_mean = use_run_mean
+        self.spread_spawns = spread_spawns
         self._active_cars: list[Car] = []
         self._completed_journeys: list[int] = []
         self.history: list[dict] = []
@@ -45,8 +49,11 @@ class EventLoop:
             hour          = (total_minutes % (24 * 60)) // 60
             minute        = total_minutes % 60
 
-            self._age_cars()
-            self._spawn_tick(DayOfWeek(day_index), hour, run_mean)
+            if self.spread_spawns:
+                self._run_tick(DayOfWeek(day_index), hour, run_mean)
+            else:
+                self._age_cars()
+                self._spawn_tick(DayOfWeek(day_index), hour, run_mean)
 
             self.history.append({
                 "tick":        tick,
@@ -72,15 +79,28 @@ class EventLoop:
 
         return self.history
 
+    def _run_tick(self, day: DayOfWeek, hour: int, run_mean: float | None) -> None:
+        hourly_target = CarsOnRoad.get_evs_on_road(day, hour)
+        to_spawn      = int(hourly_target * self.spawn_fraction)
+        schedule      = _build_spawn_schedule(to_spawn, TICK_MINUTES)
+
+        for minute_offset in range(TICK_MINUTES):
+            self._age_cars(minutes=1)
+            batch_size = schedule[minute_offset]
+            if batch_size > 0:
+                self._active_cars.extend(spawn_cars(batch_size, run_mean))
+
     def _spawn_tick(self, day: DayOfWeek, hour: int, run_mean: float | None) -> None:
         hourly_target = CarsOnRoad.get_evs_on_road(day, hour)
         to_spawn = int(hourly_target * self.spawn_fraction)
         self._active_cars.extend(spawn_cars(to_spawn, run_mean))
 
-    def _age_cars(self) -> None:
+    def _age_cars(self, minutes: int = TICK_MINUTES) -> None:
+        surviving = []
         for car in self._active_cars:
+            car.tick(minutes)
             if car.has_finished:
                 self._completed_journeys.append(car.journey_duration_minutes)
-        self._active_cars = [c for c in self._active_cars if not c.has_finished]
-        for car in self._active_cars:
-            car.tick(TICK_MINUTES)
+            else:
+                surviving.append(car)
+        self._active_cars = surviving

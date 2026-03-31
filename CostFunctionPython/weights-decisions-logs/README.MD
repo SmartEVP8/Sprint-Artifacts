@@ -1,0 +1,1 @@
+To view a log, copy it to CostFunctionPython/weight_calculation and rename it to 'WEIGHTS_LOGS'.

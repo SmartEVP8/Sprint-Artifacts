@@ -5,31 +5,32 @@ from Simulation.SpawnCarsWeightedJourneys import spawn_cars_weighted
 from Visualisation import DrawBarGraph, DrawLineGraph, DrawMultiGraph
 
 # ── Mode selector ────────────────────────────────────────────────────────────
-# "bar"   — single run, bar chart, weighted short/long journey distribution
+# "bar"   — single run, bar chart
 # "line"  — single run, line chart, uniform journey distribution
 # "multi" — N runs in parallel, line chart, rainbow coloured by run index
 MODE = "multi"
 
 # ── Parameters ───────────────────────────────────────────────────────────────
 SPAWN_FRACTION = 0.25
-N_RUNS         = 50
-USE_RUN_MEAN   = True
+N_RUNS         = 5
+USE_RUN_MEAN   = False
+SPREAD_SPAWNS = True
 
 def run_simulation(args: tuple[int, float]) -> tuple[float, list[dict]]:
     thread_id, fraction = args
     history = EventLoop(spawn_fraction=fraction, thread_id=thread_id,
-                        use_run_mean=USE_RUN_MEAN).run()
+                        use_run_mean=USE_RUN_MEAN, spread_spawns=SPREAD_SPAWNS).run()
     return (fraction, history)
 
 
 if __name__ == "__main__":
     if MODE == "bar":
-        history = EventLoop(spawn_fraction=SPAWN_FRACTION, use_run_mean=False).run()
+        history = EventLoop(spawn_fraction=SPAWN_FRACTION, use_run_mean=False, spread_spawns=SPREAD_SPAWNS).run()
         DrawBarGraph.draw_bar_graph(history)
 
     elif MODE == "line":
         history = EventLoop(spawn_fraction=SPAWN_FRACTION,
-                            use_run_mean=USE_RUN_MEAN).run()
+                            use_run_mean=USE_RUN_MEAN, spread_spawns=SPREAD_SPAWNS).run()
         DrawLineGraph.draw_line_graph(history)
 
     elif MODE == "multi":

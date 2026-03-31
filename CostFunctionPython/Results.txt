@@ -1,0 +1,18 @@
+COSTS CALCULATION RESULTS:
+Queue           = Queue³ (s.queue ** 3)
+Price           = The current price minus the average price (currentPrice - avgPrice)
+PathDeviation   = The deviation in minutes (devation_in_seconds / 60)
+Urgency         = 0.02 * SoC² (0.02 * ((ev.soc * 100) ** 2)
+
+
+COST FUNCTION CALCULATION RESULTS:
+(w_q * Queue³)                      +
+(w_p * (currentPrice - avgPrice))   +
+(w_d * (devation_in_seconds / 60))  +
+(w_u * (ev.soc * 100) ** 2)) 
+
+WEIGHTS RESULTS:
+WeightQueue          = Has to be high       -> 1.0
+WeightPrice          = Has to be low-ish    -> 0.4
+WeightPathDeviation  = Has to be high       -> 0.8
+WeightUrgency        = Did not really matter-> 0.5 (midpoint)
