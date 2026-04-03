@@ -1,0 +1,345 @@
+==========================================================================================
+SMARTEV COST FUNCTION EXPLORER
+==========================================================================================
+
+EV spawn:       (88.4, 260.7)
+EV destination: (393.9, 187.3)
+SoC:            0.224  (16.8 / 75 kWh)
+Direct distance:314.3 km  →  needs 35.4 kWh  (can't reach: ✓)
+
+Reachable stations (2):
+  S2  price=1271  queue=0
+  S6  price=817  queue=0
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #01  U1: SoC*100 | P2: -(avgPrice-currentPrice) | D1: extraMinutes | Q3: queue³
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          22.39    -132.17      31.33     0.00       -78.46 ◄
+  S2          22.39     321.52      20.64     0.00       364.55
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #02  U1: SoC*100 | P2: -(avgPrice-currentPrice) | D1: extraMinutes | Q5: 0 if empty else q+10
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          22.39    -132.17      31.33     0.00       -78.46 ◄
+  S2          22.39     321.52      20.64     0.00       364.55
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #03  U1: SoC*100 | P2: -(avgPrice-currentPrice) | D2: (total/orig)*100 | Q3: queue³
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          22.39    -132.17     113.29     0.00         3.50 ◄
+  S2          22.39     321.52     108.75     0.00       452.67
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #04  U1: SoC*100 | P2: -(avgPrice-currentPrice) | D2: (total/orig)*100 | Q5: 0 if empty else q+10
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          22.39    -132.17     113.29     0.00         3.50 ◄
+  S2          22.39     321.52     108.75     0.00       452.67
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #05  U1: SoC*100 | P2: -(avgPrice-currentPrice) | D6: freeZone(5min)*extraSeconds | Q3: queue³
+  → Best station: S2  (price=1271, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S2          22.39     321.52     938.24     0.00      1282.15 ◄
+  S6          22.39    -132.17    1579.95     0.00      1470.16
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #06  U1: SoC*100 | P2: -(avgPrice-currentPrice) | D6: freeZone(5min)*extraSeconds | Q5: 0 if empty else q+10
+  → Best station: S2  (price=1271, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S2          22.39     321.52     938.24     0.00      1282.15 ◄
+  S6          22.39    -132.17    1579.95     0.00      1470.16
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #07  U1: SoC*100 | P6: max(0, currentPrice-avgPrice) | D1: extraMinutes | Q3: queue³
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          22.39       0.00      31.33     0.00        53.72 ◄
+  S2          22.39     321.52      20.64     0.00       364.55
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #08  U1: SoC*100 | P6: max(0, currentPrice-avgPrice) | D1: extraMinutes | Q5: 0 if empty else q+10
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          22.39       0.00      31.33     0.00        53.72 ◄
+  S2          22.39     321.52      20.64     0.00       364.55
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #09  U1: SoC*100 | P6: max(0, currentPrice-avgPrice) | D2: (total/orig)*100 | Q3: queue³
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          22.39       0.00     113.29     0.00       135.68 ◄
+  S2          22.39     321.52     108.75     0.00       452.67
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #10  U1: SoC*100 | P6: max(0, currentPrice-avgPrice) | D2: (total/orig)*100 | Q5: 0 if empty else q+10
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          22.39       0.00     113.29     0.00       135.68 ◄
+  S2          22.39     321.52     108.75     0.00       452.67
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #11  U1: SoC*100 | P6: max(0, currentPrice-avgPrice) | D6: freeZone(5min)*extraSeconds | Q3: queue³
+  → Best station: S2  (price=1271, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S2          22.39     321.52     938.24     0.00      1282.15 ◄
+  S6          22.39       0.00    1579.95     0.00      1602.34
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #12  U1: SoC*100 | P6: max(0, currentPrice-avgPrice) | D6: freeZone(5min)*extraSeconds | Q5: 0 if empty else q+10
+  → Best station: S2  (price=1271, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S2          22.39     321.52     938.24     0.00      1282.15 ◄
+  S6          22.39       0.00    1579.95     0.00      1602.34
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #13  U5: SoC⁻⁰·⁵+SoC | P2: -(avgPrice-currentPrice) | D1: extraMinutes | Q3: queue³
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6           2.34    -132.17      31.33     0.00       -98.51 ◄
+  S2           2.34     321.52      20.64     0.00       344.50
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #14  U5: SoC⁻⁰·⁵+SoC | P2: -(avgPrice-currentPrice) | D1: extraMinutes | Q5: 0 if empty else q+10
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6           2.34    -132.17      31.33     0.00       -98.51 ◄
+  S2           2.34     321.52      20.64     0.00       344.50
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #15  U5: SoC⁻⁰·⁵+SoC | P2: -(avgPrice-currentPrice) | D2: (total/orig)*100 | Q3: queue³
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6           2.34    -132.17     113.29     0.00       -16.55 ◄
+  S2           2.34     321.52     108.75     0.00       432.62
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #16  U5: SoC⁻⁰·⁵+SoC | P2: -(avgPrice-currentPrice) | D2: (total/orig)*100 | Q5: 0 if empty else q+10
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6           2.34    -132.17     113.29     0.00       -16.55 ◄
+  S2           2.34     321.52     108.75     0.00       432.62
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #17  U5: SoC⁻⁰·⁵+SoC | P2: -(avgPrice-currentPrice) | D6: freeZone(5min)*extraSeconds | Q3: queue³
+  → Best station: S2  (price=1271, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S2           2.34     321.52     938.24     0.00      1262.10 ◄
+  S6           2.34    -132.17    1579.95     0.00      1450.11
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #18  U5: SoC⁻⁰·⁵+SoC | P2: -(avgPrice-currentPrice) | D6: freeZone(5min)*extraSeconds | Q5: 0 if empty else q+10
+  → Best station: S2  (price=1271, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S2           2.34     321.52     938.24     0.00      1262.10 ◄
+  S6           2.34    -132.17    1579.95     0.00      1450.11
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #19  U5: SoC⁻⁰·⁵+SoC | P6: max(0, currentPrice-avgPrice) | D1: extraMinutes | Q3: queue³
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6           2.34       0.00      31.33     0.00        33.67 ◄
+  S2           2.34     321.52      20.64     0.00       344.50
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #20  U5: SoC⁻⁰·⁵+SoC | P6: max(0, currentPrice-avgPrice) | D1: extraMinutes | Q5: 0 if empty else q+10
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6           2.34       0.00      31.33     0.00        33.67 ◄
+  S2           2.34     321.52      20.64     0.00       344.50
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #21  U5: SoC⁻⁰·⁵+SoC | P6: max(0, currentPrice-avgPrice) | D2: (total/orig)*100 | Q3: queue³
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6           2.34       0.00     113.29     0.00       115.63 ◄
+  S2           2.34     321.52     108.75     0.00       432.62
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #22  U5: SoC⁻⁰·⁵+SoC | P6: max(0, currentPrice-avgPrice) | D2: (total/orig)*100 | Q5: 0 if empty else q+10
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6           2.34       0.00     113.29     0.00       115.63 ◄
+  S2           2.34     321.52     108.75     0.00       432.62
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #23  U5: SoC⁻⁰·⁵+SoC | P6: max(0, currentPrice-avgPrice) | D6: freeZone(5min)*extraSeconds | Q3: queue³
+  → Best station: S2  (price=1271, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S2           2.34     321.52     938.24     0.00      1262.10 ◄
+  S6           2.34       0.00    1579.95     0.00      1582.29
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #24  U5: SoC⁻⁰·⁵+SoC | P6: max(0, currentPrice-avgPrice) | D6: freeZone(5min)*extraSeconds | Q5: 0 if empty else q+10
+  → Best station: S2  (price=1271, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S2           2.34     321.52     938.24     0.00      1262.10 ◄
+  S6           2.34       0.00    1579.95     0.00      1582.29
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #25  U6: (1-SoC)*100 | P2: -(avgPrice-currentPrice) | D1: extraMinutes | Q3: queue³
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          77.61    -132.17      31.33     0.00       -23.23 ◄
+  S2          77.61     321.52      20.64     0.00       419.77
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #26  U6: (1-SoC)*100 | P2: -(avgPrice-currentPrice) | D1: extraMinutes | Q5: 0 if empty else q+10
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          77.61    -132.17      31.33     0.00       -23.23 ◄
+  S2          77.61     321.52      20.64     0.00       419.77
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #27  U6: (1-SoC)*100 | P2: -(avgPrice-currentPrice) | D2: (total/orig)*100 | Q3: queue³
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          77.61    -132.17     113.29     0.00        58.73 ◄
+  S2          77.61     321.52     108.75     0.00       507.89
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #28  U6: (1-SoC)*100 | P2: -(avgPrice-currentPrice) | D2: (total/orig)*100 | Q5: 0 if empty else q+10
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          77.61    -132.17     113.29     0.00        58.73 ◄
+  S2          77.61     321.52     108.75     0.00       507.89
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #29  U6: (1-SoC)*100 | P2: -(avgPrice-currentPrice) | D6: freeZone(5min)*extraSeconds | Q3: queue³
+  → Best station: S2  (price=1271, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S2          77.61     321.52     938.24     0.00      1337.37 ◄
+  S6          77.61    -132.17    1579.95     0.00      1525.39
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #30  U6: (1-SoC)*100 | P2: -(avgPrice-currentPrice) | D6: freeZone(5min)*extraSeconds | Q5: 0 if empty else q+10
+  → Best station: S2  (price=1271, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S2          77.61     321.52     938.24     0.00      1337.37 ◄
+  S6          77.61    -132.17    1579.95     0.00      1525.39
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #31  U6: (1-SoC)*100 | P6: max(0, currentPrice-avgPrice) | D1: extraMinutes | Q3: queue³
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          77.61       0.00      31.33     0.00       108.95 ◄
+  S2          77.61     321.52      20.64     0.00       419.77
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #32  U6: (1-SoC)*100 | P6: max(0, currentPrice-avgPrice) | D1: extraMinutes | Q5: 0 if empty else q+10
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          77.61       0.00      31.33     0.00       108.95 ◄
+  S2          77.61     321.52      20.64     0.00       419.77
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #33  U6: (1-SoC)*100 | P6: max(0, currentPrice-avgPrice) | D2: (total/orig)*100 | Q3: queue³
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          77.61       0.00     113.29     0.00       190.90 ◄
+  S2          77.61     321.52     108.75     0.00       507.89
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #34  U6: (1-SoC)*100 | P6: max(0, currentPrice-avgPrice) | D2: (total/orig)*100 | Q5: 0 if empty else q+10
+  → Best station: S6  (price=817, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S6          77.61       0.00     113.29     0.00       190.90 ◄
+  S2          77.61     321.52     108.75     0.00       507.89
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #35  U6: (1-SoC)*100 | P6: max(0, currentPrice-avgPrice) | D6: freeZone(5min)*extraSeconds | Q3: queue³
+  → Best station: S2  (price=1271, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S2          77.61     321.52     938.24     0.00      1337.37 ◄
+  S6          77.61       0.00    1579.95     0.00      1657.56
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Combo #36  U6: (1-SoC)*100 | P6: max(0, currentPrice-avgPrice) | D6: freeZone(5min)*extraSeconds | Q5: 0 if empty else q+10
+  → Best station: S2  (price=1271, queue=0)
+
+  Station    Urgency      Price       Path    Queue        TOTAL
+  -------    -------      -----       ----    -----        -----
+  S2          77.61     321.52     938.24     0.00      1337.37 ◄
+  S6          77.61       0.00    1579.95     0.00      1657.56
+
+==========================================================================================
+SUMMARY: Station selection frequency across all combinations
+
+    S6  ████████████████████████  (24/36)
+    S2  ████████████  (12/36)
+
+  Seed: 836133
+

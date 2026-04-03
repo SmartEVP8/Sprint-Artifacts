@@ -1,0 +1,31 @@
+Urgency Formulae
+U1: SoC * 100
+U2: SoC² * 100
+U3: 0.5 * SoC * 100
+U4: SoC² + 100 * SoC
+U5: SoC⁻⁰·⁵ + SoC
+U6: (1 - SoC) * 100
+U7: x * (SoC*100)²
+
+Price Formulae
+P1: ((max - min) / price) * 100
+P2: -(avg - price)
+P3: price - min + (range / 2)
+P4: (avg - price)²
+P5: (price / avg) * 100
+P6: max(0, price - avg)
+
+Path Formulae
+D1: extraSeconds
+D2: (total / orig) * 100
+D3: log(total / orig) * 100
+D4: (detourKm / origKm) * 100
+D5: detourMin² / origMin
+D6: max(0, detourMin - 5) * 60
+
+Queue Formulae
+Q1: queue²
+Q2: queue
+Q3: queue³
+Q4: (queue / max) * 100
+Q5: 0 if empty else queue + 10
