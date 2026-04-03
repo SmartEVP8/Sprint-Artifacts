@@ -1,11 +1,11 @@
 Urgency Formulae
-
 U1: SoC * 100
 U2: SoC² * 100
 U3: 0.5 * SoC * 100
 U4: SoC² + 100 * SoC
 U5: SoC⁻⁰·⁵ + SoC
 U6: (1 - SoC) * 100
+U7: x * (SoC*100)²
 
 Price Formulae
 P1: ((max - min) / price) * 100
